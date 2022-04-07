@@ -5,7 +5,7 @@ phases:
     commands:
       - echo Logging in to DockerHub...
       - docker login -u jsotogaviard -p Ohantzia84
-      - REPOSITORY_URI=671449845635.dkr.ecr.us-west-2.amazonaws.com/myapp
+      - REPOSITORY_URI=218478455445.dkr.ecr.us-west-2.amazonaws.com/gladia
       - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
       - IMAGE_TAG=${COMMIT_HASH:=latest}
   build:
@@ -24,6 +24,6 @@ phases:
       - docker push $REPOSITORY_URI:latest
       - docker push $REPOSITORY_URI:$IMAGE_TAG
       - echo Writing image definitions file...
-      - printf '[{"name":"myapp","imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
+      - printf '[{"name":"gladia-app","imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
 artifacts:
     files: imagedefinitions.json 
